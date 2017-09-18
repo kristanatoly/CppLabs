@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main() 
+
+{
+    
+    float a, b, e, x, y, z;
+    e=2.7;
+    
+    cin >> x >> y >> z;
+    
+    a=(1+y)*(x+y/(x*x+4))/(pow(e,(-1*x-2))+1/(x*x+4));
+    b=(1+cos(y-2))/(pow(x,4)/2)+pow(sin(z),2);
+    
+    cout << a << endl << b;
+        
+    return 0;
+}
