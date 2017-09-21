@@ -1,0 +1,39 @@
+/*Если сумма трёх попарно различных действительных чисел х, у, z меньше единицы,
+то наименьшее из этих трёх заменитиь полусуммой двух других;
+в противном случае заменить меньшее из х и у двух оставшихся чисел.*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+
+{
+    float x,y,z;
+    cout<<"Введите x\n"<<"Введите y\n"<<"Введите z\n\n";
+    cin>>x>>y>>z;
+
+if(x==y || x==z || y==z)
+    cout<<"Не удовлетворяет условиям";
+
+else{
+    if (x+y+z<1){
+        if (x<y && x<z){
+            x=(y+z)/2;
+            cout<<"x = "<<x<<endl<<"y = "<<y<<endl<<"z = "<<z;}
+        else{
+            if (y<x && y<z){
+                y=(x+z)/2;
+                cout<<"x = "<<x<<endl<<"y = "<<y<<endl<<"z = "<<z;}
+            else{
+                z=(x+y)/2;
+                cout<<"x = "<<x<<endl<<"y = "<<y<<endl<<"z = "<<z;}}}
+    else{
+        if (x<y){
+            x=(y+z)/2;
+            cout<<"x = "<<x<<endl<<"y = "<<y<<endl<<"z = "<<z;}
+        else{
+            y=(x+z)/2;
+            cout<<"x = "<<x<<endl<<"y = "<<y<<endl<<"z = "<<z;}}}
+return 0;
+}
