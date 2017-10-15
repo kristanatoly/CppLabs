@@ -1,0 +1,53 @@
+//Дана матрица размерности nxm. 
+//Получить одномерный массив a[m], хранящий среднее арифметическое элементов соответствующих столбцов матрицы, 
+//стоящих между минимальным и максимальным элементами этих столбцов.
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int n, m;
+	cin >> n >> m;
+	int **mas = new int*[n];
+	for (int i = 0; i < n; i++) {
+		mas[i] = new int[m];
+			for (int j = 0; j < m; j++)
+				cin >> mas[i][j];
+	}
+	double *a = new double[m];
+	for (int i = 0; i < m; i++)
+		a[i] = 0;
+
+	for (int i = 0; i < m; i++)
+	{
+		int min, max;
+		min = mas[0][i];
+		max = min;
+		int m1=0, m2=0;
+		for (int j = 1; j < n; j++)
+		{
+			if (mas[j][i] > max)
+			{
+				max = mas[j][i];
+				m2 = j;
+			}
+			if (mas[j][i] < min)
+			{
+				min = mas[j][i];
+				m1 = j;
+			}
+		}
+		
+		for (int j = m1 + 1; j < m2; j++)
+		{
+			a[i] += mas[j][i];
+		}
+		a[i] = a[i] / (m2 - m1 - 1);
+	}
+	for (int i = 0; i < m; i++)
+	{
+		cout << a[i] << " ";
+	}
+	return 0;
+}
