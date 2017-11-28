@@ -1,0 +1,49 @@
+//В текстовом файле INPUT.TXT записаны целые числа через пробел, возможно, в несколько строк.
+//За один просмотр файла сформировать список этих чисел и найти среднее арифметическое элементов списка.
+//Полученное значение занести в текстовый файл OUTPUT.TXT.
+
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+void main()
+{
+	setlocale(0, "");
+	char buff[255];
+	ifstream fin("INPUT.TXT");
+	if (!fin.is_open())
+		cout << "Файл не существует" << endl;
+	else
+	{
+
+		int *list = new int[255];
+		int j = 0;
+		while (!fin.eof()) 
+		{
+			fin.getline(buff, 255);
+			char* tmp = buff;
+			for (int i = 0; i<255; i++)
+			{
+				int a = atoi(tmp);
+				list[j] = a;
+				j++;
+				if (strchr(tmp, ' '))
+					tmp = strchr(tmp, ' ') + 1;
+				else break;
+			}
+		}
+		fin.close();
+
+		ofstream fout("OUTPUT.TXT");
+		
+		for(int n=0, n)
+		n:=n+1;
+		a:=(a+1)/n;
+		fout.close();
+	}
+	in.close();
+	out.close();
+	return 0;
+	system("pause");
+}
