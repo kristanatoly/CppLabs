@@ -1,0 +1,79 @@
+\\Вариант 2
+\\Это и работало, и не работало. 4 часа искал ошибки. Не нашел:с
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+ 
+const string FILE_INPUT("input.txt");
+const string FILE_OUTPUT("output.txt");
+const int YEAR_NOW = 2017;
+const int YEARS_OLD = 34;
+ 
+struct Employee
+{
+    string surname;
+    string firstname;
+    string patronymic;
+    int date;
+    int pay;
+}
+ 
+int main()
+{
+    ifstream infile(FILE_INPUT);
+    if (!infile)
+    {
+        cerr << "File '" << FILE_INPUT << "' not found!" << endl;
+        cin.get();
+        return -1;
+    }
+    else
+    {
+        bool isFlag = false;
+        Employee *temp = new Employee();
+        Employee *item = nullptr;
+        int age = 0;
+        string buffer;
+        while (infile >> buffer)
+        {
+            stringstream sstr;
+            for (const char &Ch : buffer)
+            {
+                sstr << (Ch == ';' ? ' ' : Ch);
+            }
+            sstr >> temp->surname >> temp->firstname >> temp->patronymic >> temp->date >> temp->pay;
+            {
+                int tempAge = YEAR_NOW - temp->date;
+                if (tempAge < YEARS_OLD)
+                {
+                    if (!isFlag)
+                    {
+                        isFlag = true;
+                        item = new Employee();
+                        swap(temp, item);
+                        swap(tempAge, age);
+                    }
+                    else
+                    {
+                        if (temp->pay > item->pay)
+                        {
+                            swap(temp, item);
+                            swap(tempAge, age);
+                        }
+                    }
+                }
+            }
+        }
+        delete temp;
+        if (item != nullptr)
+        {
+            ofstream outfile(FILE_NAME_OUTPUT, ios_base::trunc);
+            outfile << item->surname << ' ' << item->firstname << ' ' << item->patronymic << endl
+                << "Age: " << age << endl;
+            delete item;
+        }
+    }
+}
