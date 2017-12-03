@@ -1,12 +1,5 @@
-m,.k.nvS:LJ
-VSD:lB
+git add .
 
-sVD
-sd
-V
-SDB
+git commit -m "Test commit!1!"
 
-lfn
- asjndf jaifdmbkl s
-[ b,['dpksm 'oaisk,coiyjkw'jn bjjpof;NP'{; WRQ['P'k
-D"F
+git push origin
