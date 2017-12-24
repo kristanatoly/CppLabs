@@ -1,0 +1,58 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+ 
+using namespace std;
+
+struct Aeroflot
+{
+    int flightNumber;
+    string planeType;
+    string finalDestination;
+};
+ 
+ 
+bool pred(const Aeroflot & lhs,const Aeroflot & rhs){
+    return lhs.flightNumber<rhs.flightNumber;
+}
+
+//Хотел сюда вставить меню, но оно не захотело вставляться
+ 
+int main()
+{
+    const size_t structSize(3);
+    Aeroflot data[structSize];
+ 
+    cout << "Input the data: " << endl ;
+    for (unsigned i = 0; i < structSize; i++) {
+        cout << (i + 1) << ": " << endl;
+        cout << "Destination: ";
+        getline(cin, data[i].finalDestination);
+        cout << "Plane type: ";
+        getline(cin, data[i].planeType);
+        cout << "Flight number: ";
+        cin >> data[i].flightNumber;
+ 
+        cin.sync();
+        cin.clear();
+        cout << endl;
+    }
+    sort(data,data+structSize,pred);
+    for (unsigned long long i = 0; i < structSize; i++)
+            cout << "Flight: " << data[i].finalDestination<<" - "<<data[i].flightNumber << "(" << data[i].planeType << ")" << std::endl;
+    string userDestination;
+    cout << "Input the destination: ";
+    getline(cin, userDestination);
+    unsigned resultsCounter(0);
+    cout << "Results: " << endl;
+    for (unsigned long long i = 0; i < structSize; i++) {
+        if (data[i].finalDestination == userDestination) {
+            cout << "Flight: " << data[i].flightNumber << "(" << data[i].planeType << ")" << endl;
+            resultsCounter++;
+        }
+    }
+    if (!resultsCounter)
+        cout << "Nothing!" << endl;
+    
+    return 0;
+}
